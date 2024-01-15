@@ -1,5 +1,6 @@
 package practice;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class TwoSum {
@@ -45,7 +46,9 @@ public class TwoSum {
 
         //create an array to store out put and display
         int[] array=new int[2];
-        array= twoSum.twosum(arr,target);
+
+        //array= twoSum.twosum(arr,target);
+        array=twoSum.twoSum(arr,target);
 
         for (int k=0; k<2; k++)
         {
@@ -58,7 +61,7 @@ public class TwoSum {
 
 
     //using bruteforce approach
-    public int[] twosum(int arr[],int target){
+    /*public int[] twosum(int arr[],int target){
 
         int[] nums=new int[2];
 
@@ -73,5 +76,32 @@ public class TwoSum {
             }
         }
         return nums;
+    }*/
+
+    //using hashmap
+    public int[] twoSum(int arr[],int target)
+    {
+        //declaring an array to store the output
+       int[] nums={0,0};
+
+        HashMap<Integer,Integer> map=new HashMap<>();
+
+        for(int i=0;i<arr.length;i++){
+
+            if(map.containsKey(target-arr[i])){
+                nums[0]=i;
+                nums[1]=map.get(target-arr[i]);
+
+                return nums;
+
+            }else{
+                map.put(arr[i],i);
+            }
+        }
+        return nums;
+
+
+
+
     }
 }
